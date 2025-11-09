@@ -102,3 +102,5 @@ That's it! The application should be running.
 - Cursors only appear when users are actively moving their mouse
 - They disappear after 2 seconds of inactivity
 - Make sure WebSocket connection is active
+
+**Demo Link**: https://collaborative-canvas-6uva.onrender.com/
