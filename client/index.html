@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborative Whiteboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Landing Page View -->
+  <div id="landing-page" class="landing-page">
+    <div class="landing-container">
+      <div class="landing-content">
+        <h1 class="landing-title">Collaborative Whiteboard</h1>
+        <p class="landing-subtitle">Choose a room to start drawing together</p>
+        
+        <div class="rooms-grid">
+          <button class="room-card" data-room="ROOM1">
+            <div class="room-name">ROOM 1</div>
+          </button>
+          <button class="room-card" data-room="ROOM2">
+            <div class="room-name">ROOM 2</div>
+          </button>
+          <button class="room-card" data-room="ROOM3">
+            <div class="room-name">ROOM 3</div>
+          </button>
+        </div>
+
+        <div class="create-room-section">
+          <h2>Create Custom Room</h2>
+          <div class="create-room-form">
+            <input type="text" id="custom-room-name" placeholder="Enter room name..." maxlength="20" />
+            <button id="create-room-btn">Create Room</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Whiteboard View -->
+  <div id="whiteboard-page" class="whiteboard-page" style="display: none;">
+    <div class="whiteboard-container">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button id="back-btn" class="icon-btn" title="Back to Rooms">Back</button>
+          <span id="room-name" class="room-name-display">ROOM</span>
+        </div>
+        
+        <div class="toolbar-center">
+          <div class="tool-group">
+            <label class="tool-label">
+              <span>Color:</span>
+              <input type="color" id="color-picker" value="#ff0000" />
+            </label>
+          </div>
+          
+          <div class="tool-group">
+            <label class="tool-label">
+              <span>Size:</span>
+              <input type="range" id="size-slider" min="1" max="30" value="4" />
+              <span id="size-value">4</span>
+            </label>
+          </div>
+          
+          <button id="brush-btn" class="tool-btn active">Brush</button>
+          <button id="eraser-btn" class="tool-btn">Eraser</button>
+          <button id="undo-btn" class="tool-btn">Undo</button>
+          <button id="redo-btn" class="tool-btn">Redo</button>
+          <button id="clear-btn" class="tool-btn clear-btn">Clear</button>
+        </div>
+        
+        <div class="toolbar-right">
+          <div class="user-info">
+            <div class="add-user-section">
+              <input type="text" id="user-name-input" placeholder="Enter name..." maxlength="15" />
+              <button id="add-user-btn" class="join-btn">Add User</button>
+            </div>
+            <div class="active-user-section">
+              <label class="tool-label">
+                <span>Active:</span>
+                <select id="active-user-select" class="user-select">
+                  <option value="">Select user...</option>
+                </select>
+              </label>
+              <button id="remove-user-btn" class="remove-btn" title="Remove selected user">Remove</button>
+            </div>
+            <span id="connected-count" class="connected-badge">0 users</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-container">
+        <div id="canvas-overlay" class="canvas-overlay">
+          <div class="canvas-overlay-message">
+            Please add a user by entering a name and clicking "Add User" to start drawing
+          </div>
+        </div>
+        <canvas id="canvas"></canvas>
+        <div id="cursors-container"></div>
+        <div id="tooltip" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="canvas.js"></script>
+  <script src="websocket.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
